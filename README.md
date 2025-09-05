@@ -1,141 +1,127 @@
-# Rita - AI Telegram Bot
+# Rita — Telegram AI Bot
 
-## 📌 Overview
-Rita is an AI-powered Telegram bot designed to assist users with various tasks, including natural language conversation, AI-generated responses, web searches, and media analysis. It integrates with OpenAI, Wikipedia, YouTube, TikTok, and Shopee to provide smart assistance.
+## Introduction
 
-## 🚀 Features
-- **AI Chatbot with OpenAI Integration**: Engage in meaningful AI-driven conversations.
-- **Web Search & Wikipedia Lookup**: Retrieve relevant information with AI-powered search.
-- **YouTube Video Analysis & Download**: Analyze video metadata and download in MP3/MP4 formats.
-- **TikTok Video Analysis & Download**: Fetch video details and download watermark-free content.
-- **Shopee Product Search & Summary**: Retrieve product recommendations and details.
-- **User Activity Logging**: Store interactions for insights and improvements.
-- **Weather Forecasting**: Get real-time weather updates for any city.
-
-## 🛠️ Setup
-### Prerequisites
-- Python 3.8+
-- Required dependencies
-
-### Installation
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/lqp-cter/rita-telegram-bot.git
-   cd rita-telegram-bot
-   ```
-2. Install required dependencies:
-   ```sh
-   pip install -r requirements.txt
-   ```
-3. Set up API keys:
-   - Replace `API_KEY` in the script with your Telegram bot token.
-   - Update `OpenAI API Key`, `X-RapidAPI-Key`, and `YouTube API Key`.
-4. Run the bot:
-   ```sh
-   python main.py
-   ```
-
-## 🔧 Configuration
-### Environment Variables
-- `API_KEY`: Your Telegram bot API token.
-- `OpenAI API Key`: API key for AI chatbot.
-- `X-RapidAPI-Key`: RapidAPI key for web scraping.
-- `YouTube API Key`: API key for video analysis.
-- `DOWNLOAD_FOLDER`: Directory to store downloaded media files.
-
-## 📜 Usage
-### Start the Bot
-To start interacting with Rita, send the `/start` command.
-
-### AI Chatbot
-Engage in AI-powered conversations:
-```sh
-/chat <your message>
-```
-
-### Web Search & Wikipedia Lookup
-Find information easily:
-```sh
-/wiki <keyword>
-```
-```sh
-/search <query>
-```
-
-### YouTube Features
-- Search for videos:
-  ```sh
-  /search <Video Name>
-  ```
-- Download a video in MP3/MP4 format:
-  ```sh
-  /download_ytb <YouTube URL> <mp3/mp4>
-  ```
-- Analyze a YouTube video:
-  ```sh
-  /analysis_ytb <YouTube URL>
-  ```
-
-### TikTok Features
-- Analyze TikTok video metadata:
-  ```sh
-  /analysis_tik <TikTok Video URL>
-  ```
-- Download TikTok video without watermark:
-  ```sh
-  /download_tik <TikTok Video URL>
-  ```
-
-### Shopee Product Lookup
-- Search for products:
-  ```sh
-  /recommend <Keyword>
-  ```
-- Get product details from Shopee:
-  ```sh
-  /shopee <Shopee Product URL>
-  ```
-
-### Additional Features
-- Check the weather: `/weather <City>`
-- Clear chat history: `/clear`
-- View available documents: `/doc`
-- Fetch specific documents: `/file <Document ID>`
-
-## 📂 File Structure
-```
-├── Downloads/            # Directory for downloaded media
-├── main.py               # Main bot script
-├── requirements.txt      # Dependencies
-├── user_data.txt         # User activity log
-├── README.md             # Documentation
-```
-
-## 📌 Dependencies
-- `python-telegram-bot`
-- `requests`
-- `pandas`
-- `pyshorteners`
-- `openai`
-- `textblob`
-- `moviepy`
-- `wikipedia`
-- `emoji`
-
-Install them via:
-```sh
-pip install -r requirements.txt
-```
-
-## 💡 Contributing
-Pull requests are welcome! For major changes, please open an issue first to discuss your ideas.
-
-## 🛡️ License
-This project is open-source and licensed under the MIT License.
-
-## 📬 Contact
-For issues or feature requests, contact [Lê Qúy Phát](https://t.me/CterLQP).
+Rita là một Telegram bot hỗ trợ nhiều tính năng xoay quanh AI, tìm kiếm và phân tích nội dung trực tuyến. Bot được xây dựng bằng Python, sử dụng thư viện `python-telegram-bot` và tích hợp nhiều API bên ngoài như OpenAI, RapidAPI, YouTube Data API và OpenWeatherMap.
 
 ---
-Thank you for using Rita! 😊
 
+## Features
+
+* **AI Chat**: trò chuyện với AI (OpenAI GPT-4) theo ngữ cảnh, lưu lịch sử theo chat\_id.
+* **Wikipedia**: `/wiki <từ khóa>` lấy tóm tắt nhanh từ Wikipedia.
+* **YouTube**:
+
+  * `/search <tên>` tìm video.
+  * `/analysis_ytb <URL>` phân tích metadata.
+  * `/download_ytb <URL> (mp3|mp4)` tải video/audio, hỗ trợ chuyển đổi mp4 sang mp3.
+* **TikTok**:
+
+  * `/analysis_tik <URL>` phân tích thông tin video.
+  * `/download_tik <URL>` tải video không watermark.
+* **Shopee**:
+
+  * `/recommend <từ khóa>` gợi ý ngẫu nhiên một số sản phẩm.
+  * `/shopee <URL>` tóm tắt chi tiết sản phẩm, phân tích sentiment mô tả.
+* **Weather**: `/weather <thành phố>` hiển thị mô tả thời tiết và nhiệt độ.
+* **Others**: `/doc`, `/file <id>`, `/sklearn`, `/clear`, `/help`, `/feedback`, `/leak`.
+
+---
+
+## Architecture & Libraries
+
+* **Ngôn ngữ**: Python 3.9+
+* **Framework chính**: `python-telegram-bot`
+* **AI**: `openai`
+* **Xử lý media**: `moviepy`, `pyshorteners`
+* **Thông tin**: `wikipedia`, `googleapiclient`, RapidAPI, `textblob`
+* **Khác**: `pandas`, `requests`, `emoji`
+
+---
+
+## Folder Structure
+
+```
+.
+├── downloads/        # file tải về
+├── documents/        # tài liệu
+├── Main.py           # logic chính của bot
+├── Constants.py      # chứa API_KEY Telegram
+├── Article.py        # class Article
+├── requirements.txt  # danh sách phụ thuộc
+├── user_data.txt     # log người dùng
+└── README.md
+```
+
+---
+
+## Installation & Run
+
+1. Cài đặt môi trường ảo (tuỳ chọn).
+2. Cài phụ thuộc:
+
+   ```bash
+   pip install -r requirements.txt
+   ```
+3. Tạo thư mục cần thiết:
+
+   ```bash
+   mkdir -p downloads documents
+   ```
+4. Cấu hình API keys (qua `.env` hoặc trong code).
+5. Chạy bot:
+
+   ```bash
+   python Main.py
+   ```
+
+---
+
+## Configuration
+
+Tạo file `.env` (khuyến nghị):
+
+```
+TELEGRAM_API_KEY=...
+OPENAI_API_KEY=...
+OPENWEATHER_API_KEY=...
+YOUTUBE_API_KEY=...
+GOOGLE_CSE_API_KEY=...
+GOOGLE_CSE_CX=...
+RAPIDAPI_KEY_YT=...
+RAPIDAPI_KEY_TIKTOK=...
+RAPIDAPI_KEY_AUTODL=...
+RAPIDAPI_KEY_SHOPEE=...
+```
+
+Hoặc tạm thời đặt trực tiếp trong `Constants.py`.
+
+---
+
+## Logging & Privacy
+
+* Tất cả tin nhắn được log vào `user_data.txt` (thời gian, chat\_id, username, tên đầy đủ, nội dung).
+* Có thể thay thế lưu vào DB để tăng bảo mật.
+
+---
+
+## Legal Notes
+
+* Tải video từ YouTube/TikTok phải tuân thủ điều khoản dịch vụ của nền tảng.
+* API keys không nên commit lên repo công khai.
+
+---
+
+## Roadmap
+
+* Đọc config từ `.env`
+* Tách API key khỏi mã nguồn
+* Hỗ trợ log bằng database
+* Cải thiện error handling
+* Bổ sung đa ngôn ngữ (vi/en)
+
+---
+
+## Contact
+
+* Telegram: @CterLQP
